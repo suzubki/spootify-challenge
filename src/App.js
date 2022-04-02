@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { PlayList } from "./pages/PlayList";
 import { Album } from "./pages/Album";
+import { Genres } from "./pages/Genres";
 import { getToken } from "./services/getToken";
 
 const App = () => {
@@ -29,8 +30,11 @@ const App = () => {
                 <Route path="playlist" element={<PlayList />}>
                     <Route path=":id" element={<PlayList />} />
                 </Route>
-                <Route path="albums">
+                <Route path="albums" element={<Album />}>
                     <Route path=":id" element={<Album />} />
+                </Route>
+                <Route path="genres" element={<Genres />}>
+                    <Route path=":id" element={<Genres />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -2,7 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const useFetchAndLoad = (url, id) => {
-    const [data, setData] = useState();
+    const [{ data, loading }, setData] = useState({
+        data: [],
+        loading: true,
+    });
 
     const hasToken = typeof localStorage.getItem("token") === "string";
 
@@ -21,9 +24,14 @@ export const useFetchAndLoad = (url, id) => {
                 .get(`${url}/${id}`, {
                     headers,
                 })
-                .then((res) => setData(res.data));
+                .then((res) => {
+                    setData({
+                        data: res.data,
+                        loading: false,
+                    });
+                });
         }
     }, [id, hasToken, url]);
 
-    return data;
+    return { data, loading };
 };

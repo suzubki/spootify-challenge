@@ -26,7 +26,17 @@ export const manyCategoriesAdapter = (manyCategories) => {
 };
 
 export const playlistAdapter = (data) => {
-    const firstTwentyTracks = data?.tracks.items.slice(0, 20);
+    const initialState = {
+        name: "",
+        description: "",
+        image: "",
+        type: "",
+        tracks: [],
+        followers: 0,
+    };
+
+    if (data.length === 0) return initialState;
+    const firstTwentyTracks = data.tracks.items.slice(0, 20);
 
     const description = data?.description
         .split(">")
@@ -48,36 +58,120 @@ export const playlistAdapter = (data) => {
     );
 };
 
-export const trackItemAdapter = (track) => {
-    if (!track) return {};
-
-    const { name: artistName } = track.artists[0];
-    const urlImage = track.album.images[0].url;
-
-    return (
-        {
-            urlImage: urlImage,
-            id: track.id,
-            artists: track.artists,
-            trackName: track.name,
-            artistName: artistName,
-        } || null
-    );
-};
-
 export const albumAdapter = (data) => {
-    const firstTwentyTracks = data?.tracks.items.slice(0, 20);
+    const initialState = {
+        name: "",
+        label: "",
+        image: "",
+        type: "",
+        tracks: null,
+        popularity: 0,
+    };
+    if (data.length === 0) return initialState;
 
-    const popularity = data?.popularity.toString();
+    const firstTwentyTracks = data.tracks.items.slice(0, 20);
+    const popularity = data.popularity.toString();
 
     return (
         {
-            name: data?.name,
-            label: data?.label,
-            image: data?.images[0].url,
-            type: data?.type,
+            name: data.name,
+            label: data.label,
+            image: data.images[0].url,
+            type: data.type,
             tracks: firstTwentyTracks,
             popularity: popularity,
         } || null
     );
+};
+
+export const genresAdapter = (data) => {
+    const initialState = {
+        tracks: [],
+    };
+    if (data.length === 0) return initialState;
+
+    const {
+        playlists: { items: tracks },
+    } = data;
+    return tracks;
+};
+
+// Items from Album
+export const trackItemAlbumAdapter = (track) => {
+    console.log(track);
+    const initialState = {
+        id: 0,
+        trackName: "",
+        artistName: "",
+        image: "",
+    };
+
+    if (!track) return initialState;
+    const { name } = track?.artists[0];
+    return {
+        id: track.id,
+        trackName: track.name,
+        artistName: name,
+    };
+};
+
+// Items from Playlist
+export const trackItemPlaylistAdapter = (dataItems) => {
+    const track = dataItems.track;
+
+    const initialState = {
+        id: 0,
+        trackName: "",
+        artistName: "",
+    };
+
+    if (!track) return initialState;
+    const image = track.album.images[0].url;
+    const { name } = track?.artists[0];
+    return {
+        id: track.id,
+        trackName: track.name,
+        artistName: name,
+        image: image,
+    };
+};
+
+export const trackItemGenresAdapter = (track) => {
+    const initialState = {
+        id: 0,
+        trackName: "",
+        artistName: "",
+        image: "",
+    };
+
+    if (!track) return initialState;
+    // const description = track.description
+    //     .split(">")
+    //     .filter((el) => !el.startsWith("<"))
+    //     .map((el) => {
+    //         return el.replace("</a", "");
+    //     })
+    //     .join("");
+
+    const newdescription = track.description
+        .split("<")
+        .map((el) => {
+            if (el.startsWith("a href")) {
+                const u = el
+                    .split(">")
+                    .filter((el) => !el.startsWith("a href"));
+                return u.join("");
+            } else return el;
+        })
+        .filter((el) => !el.startsWith("/a"))
+        .join("");
+
+    const image = track.images[0].url;
+
+    return {
+        id: track.id,
+        description: newdescription,
+        name: track.name,
+        image: image,
+    };
 };

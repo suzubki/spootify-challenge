@@ -7,14 +7,12 @@ import { useFetchAndLoad } from "../hooks/useFetchAndLoad";
 export const Album = () => {
     const url = "https://api.spotify.com/v1/albums";
     let params = useParams();
-    const getAlbumById = useFetchAndLoad(url, params.id);
-
-    const { name, label, image, type, tracks, popularity } =
-        albumAdapter(getAlbumById);
+    const { data, loading } = useFetchAndLoad(url, params.id);
+    const { name, label, image, type, tracks, popularity } = albumAdapter(data);
 
     return (
         <div>
-            {getAlbumById && (
+            {!loading && (
                 <AlbumTemplate
                     name={name}
                     description={label}

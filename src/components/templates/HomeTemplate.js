@@ -29,7 +29,7 @@ export const HomeTemplate = ({
                     name="featuredPlaylist"
                     data={itemsManyCategories}
                     title="Browser Genres"
-                    section=""
+                    section="genres"
                 />
             )}
         </div>

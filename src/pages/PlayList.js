@@ -8,14 +8,14 @@ import { PlaylistTemplate } from "../components/templates/PlaylistTemplate";
 export const PlayList = () => {
     const url = "https://api.spotify.com/v1/playlists";
     let params = useParams();
-    const getPlaylist = useFetchAndLoad(url, params.id);
+    const { data, loading } = useFetchAndLoad(url, params.id);
 
     const { name, description, image, type, tracks, followers } =
-        playlistAdapter(getPlaylist);
+        playlistAdapter(data);
 
     return (
         <div>
-            {getPlaylist && (
+            {!loading && (
                 <PlaylistTemplate
                     name={name}
                     description={description}

@@ -2,6 +2,8 @@ import React from "react";
 import { TracksGrid } from "../molecules/TracksGrid";
 import { About } from "../organisms/About";
 
+import { trackItemPlaylistAdapter } from "../../adapters";
+
 export const PlaylistTemplate = ({
     name,
     description,
@@ -20,7 +22,10 @@ export const PlaylistTemplate = ({
                 amount={amount}
             />
             <div className="xl:text-lg ml-4 mt-3 text-yellow-300">Tracks:</div>
-            <TracksGrid tracks={tracks} />
+            <TracksGrid
+                tracks={tracks}
+                itemsAdapter={trackItemPlaylistAdapter}
+            />
         </>
     );
 };

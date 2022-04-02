@@ -1,4 +1,5 @@
 import React from "react";
+import { trackItemAlbumAdapter } from "../../adapters";
 import { TracksGrid } from "../molecules/TracksGrid";
 import { About } from "../organisms/About";
 
@@ -20,7 +21,7 @@ export const AlbumTemplate = ({
                 amount={amount}
             />
             <div className="xl:text-lg ml-4 mt-3 text-yellow-300">Tracks:</div>
-            <TracksGrid tracks={tracks} />
+            <TracksGrid tracks={tracks} itemsAdapter={trackItemAlbumAdapter} />
         </>
     );
 };
