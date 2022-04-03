@@ -12,7 +12,7 @@ export const Card = ({ name, image, handleClick }) => {
                 className="object-cover w-56 sm:w-full"
                 alt={name && "Image card spootify"}
             />
-            <span className="text-center my-1 p-1 text-xs font-bold sm:p-0 sm:text-sm leading-4">
+            <span className="text-center my-1 p-1 text-xs font-bold sm:p-0 sm:text-sm leading-4  text-slate-200 ">
                 {name}
             </span>
         </li>

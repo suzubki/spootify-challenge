@@ -13,3 +13,7 @@
   width: 4px; /*ancho del scroll vertical*/
   height: 4px; /*alto del scroll horizontal*/
 }
+
+body{
+  background-color: rgb(15 23 42);
+}

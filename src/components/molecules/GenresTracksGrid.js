@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const ItemGenres = ({ id, description, name, image }) => {
     return (
-        <div key={id} className="flex flex-row gap-2 xs:gap-4 lg:my-3 xl:ml-4">
+        <div className="flex flex-row gap-2 xs:gap-4 lg:my-3 xl:ml-4">
             <img
                 className="w-20 cursor-pointer rounded-md object-cover lg:mr-2 xl:mr-2"
                 src={image ?? disk}
@@ -13,8 +13,12 @@ const ItemGenres = ({ id, description, name, image }) => {
             />
 
             <div className="flex flex-col justify-center">
-                <span className="text-md capitalize">{name}</span>
-                <span className="text-sm capitalize">{description}</span>
+                <span className="text-md font-bold text-slate-200 leading-4 capitalize">
+                    {name}
+                </span>
+                <span className="text-sm text-slate-500  capitalize">
+                    {description}
+                </span>
             </div>
         </div>
     );

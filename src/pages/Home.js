@@ -20,6 +20,11 @@ export const Home = React.memo(() => {
 
     return (
         <div>
+            <div className="text-center p-6 lg:p-16">
+                <span className="text-sky-200 font-bold text-3xl lg:text-5xl">
+                    Spootify{" "}
+                </span>
+            </div>
             <HomeTemplate
                 itemsNewReleases={itemsNewReleases}
                 itemsFeaturedPlaylist={itemsFeaturedPlaylist}

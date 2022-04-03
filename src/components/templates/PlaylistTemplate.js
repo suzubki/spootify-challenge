@@ -21,7 +21,7 @@ export const PlaylistTemplate = ({
                 type={type}
                 amount={amount}
             />
-            <div className="xl:text-lg ml-4 mt-3 text-yellow-300">Tracks:</div>
+            <div className="xl:text-lg ml-4 mt-3 text-slate-700">Tracks:</div>
             <TracksGrid
                 tracks={tracks}
                 itemsAdapter={trackItemPlaylistAdapter}

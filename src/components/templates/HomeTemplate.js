@@ -7,7 +7,7 @@ export const HomeTemplate = ({
     itemsManyCategories,
 }) => {
     return (
-        <div className="App min-h-screen font-Arimo">
+        <div className="App min-h-screen font-Arimo mb-24">
             {itemsNewReleases && (
                 <SectionCard
                     name="newReleases"

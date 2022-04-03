@@ -98,7 +98,6 @@ export const genresAdapter = (data) => {
 
 // Items from Album
 export const trackItemAlbumAdapter = (track) => {
-    console.log(track);
     const initialState = {
         id: 0,
         trackName: "",
@@ -108,10 +107,12 @@ export const trackItemAlbumAdapter = (track) => {
 
     if (!track) return initialState;
     const { name } = track?.artists[0];
+    const music = track?.preview_url;
     return {
         id: track.id,
         trackName: track.name,
         artistName: name,
+        music: music,
     };
 };
 
@@ -128,11 +129,13 @@ export const trackItemPlaylistAdapter = (dataItems) => {
     if (!track) return initialState;
     const image = track.album.images[0].url;
     const { name } = track?.artists[0];
+    const music = track?.preview_url;
     return {
         id: track.id,
         trackName: track.name,
         artistName: name,
         image: image,
+        music: music,
     };
 };
 

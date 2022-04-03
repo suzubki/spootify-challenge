@@ -5,7 +5,7 @@ import { next, previous } from "../../assets/icons";
 export const TitleSectionCard = ({ title }) => {
     return (
         <div className="flex items-center">
-            <span className="text-lg font-bold text-slate-600 mx-2">
+            <span className="text-lg font-bold text-slate-400 mx-2">
                 {title}
             </span>
             <span className="h-[2px] flex-1 bg-slate-300" />
